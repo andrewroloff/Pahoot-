@@ -1,0 +1,602 @@
+[
+    {
+        "question": "Most commonly fed energy feedstuff to livestock?",
+        "choices": [
+            "Barley",
+            "Corn",
+            "Wheat",
+            "Sorghum"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Most commonly fed protein feedstuff?",
+        "choices": [
+            "Canola meal",
+            "Fish meal",
+            "Soybean meal",
+            "Cottonseed meal"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Feed high in pectins, ideal for ruminants?",
+        "choices": [
+            "Soy hulls",
+            "Beet pulp",
+            "Wheat bran",
+            "Corn gluten"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Which feed may contain gossypol?",
+        "choices": [
+            "Soybean meal",
+            "Cottonseed",
+            "Canola meal",
+            "Alfalfa"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "SBM is paired with corn mainly to improve?",
+        "choices": [
+            "Energy density",
+            "Fiber digestion",
+            "AA balance",
+            "Mineral supply"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Which protein source best matches AA needs?",
+        "choices": [
+            "Plant",
+            "Animal",
+            "Both equal",
+            "Depends on fiber"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Nutritionally relevant plant cell wall portion?",
+        "choices": [
+            "Sugar",
+            "Fiber",
+            "Protein",
+            "Starch"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Which fiber component is indigestible?",
+        "choices": [
+            "Cellulose",
+            "Hemicellulose",
+            "Lignin",
+            "Pectin"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Which maturity stage increases lignin most?",
+        "choices": [
+            "Vegetative",
+            "Immature",
+            "Early",
+            "Late"
+        ],
+        "correct": 3
+    },
+    {
+        "question": "Higher rumen pH does what to fiber digestion?",
+        "choices": [
+            "Stops",
+            "No change",
+            "Decreases",
+            "Increases"
+        ],
+        "correct": 3
+    },
+    {
+        "question": "Legumes fix nitrogen using what?",
+        "choices": [
+            "Fungi",
+            "Protozoa",
+            "Rhizobia",
+            "Algae"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Anthelmintics control what?",
+        "choices": [
+            "Bacteria",
+            "Viruses",
+            "Parasites",
+            "Fungi"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Ionophores mainly affect what?",
+        "choices": [
+            "Enzymes",
+            "Hormones",
+            "Rumen microbes",
+            "Intake"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Veterinary Feed Directive regulates?",
+        "choices": [
+            "Minerals",
+            "Vitamins",
+            "Antibiotics",
+            "Energy"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Coccidiostats control which organism?",
+        "choices": [
+            "Viruses",
+            "Bacteria",
+            "Protozoa",
+            "Helminths"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Beta-agonists shift nutrients toward?",
+        "choices": [
+            "Fat",
+            "Milk",
+            "Muscle",
+            "Fiber"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "MGA mimics which hormone?",
+        "choices": [
+            "Estrogen",
+            "Progesterone",
+            "Cortisol",
+            "Testosterone"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Antioxidants added mainly to feeds high in?",
+        "choices": [
+            "Protein",
+            "Fiber",
+            "Fat",
+            "Ash"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Common pellet binder?",
+        "choices": [
+            "Salt",
+            "Molasses",
+            "Lignosulfonate",
+            "Urea"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Ro-Tap shaker measures what?",
+        "choices": [
+            "Moisture",
+            "Density",
+            "Particle size",
+            "Protein"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Which VFA is produced in greatest concentration in rumen?",
+        "choices": [
+            "Butyrate",
+            "Propionate",
+            "Acetate",
+            "Valerate"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Primary use of acetate in ruminants?",
+        "choices": [
+            "Glucose synthesis",
+            "Milk fat synthesis",
+            "Protein synthesis",
+            "ATP only"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Which structure increases rumen absorption?",
+        "choices": [
+            "Villi",
+            "Microvilli",
+            "Papillae",
+            "Crypts"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Most genetically diverse rumen microbes?",
+        "choices": [
+            "Bacteria",
+            "Protozoa",
+            "Fungi",
+            "Viruses"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Why can horses not vomit?",
+        "choices": [
+            "Small stomach",
+            "Strong cardiac sphincter",
+            "No diaphragm",
+            "No esophagus"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Enlarged fiber-digesting organ in horses?",
+        "choices": [
+            "Rumen",
+            "Cecum",
+            "Colon",
+            "Abomasum"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Chicken organ that grinds feed?",
+        "choices": [
+            "Crop",
+            "Gizzard",
+            "Proventriculus",
+            "Ceca"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Nitrogen is excreted by birds mainly as?",
+        "choices": [
+            "Urea",
+            "Ammonia",
+            "Uric acid",
+            "Creatinine"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Energy unit larger: calorie vs Calorie?",
+        "choices": [
+            "Calorie",
+            "Same",
+            "Calorie x10",
+            "Calorie x100"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Animals are classified as which troph?",
+        "choices": [
+            "Phototrophs",
+            "Lithotrophs",
+            "Autotrophs",
+            "Heterotrophs"
+        ],
+        "correct": 3
+    },
+    {
+        "question": "Energy lost each trophic transfer as?",
+        "choices": [
+            "Protein",
+            "Fat",
+            "Heat",
+            "Fiber"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Net energy used for maintenance is called?",
+        "choices": [
+            "NEG",
+            "NEL",
+            "NEM",
+            "ME"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Primary product of anaerobic pyruvate metabolism?",
+        "choices": [
+            "Acetyl-CoA",
+            "Lactate",
+            "CO2",
+            "Oxaloacetate"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "First step that traps glucose in cell?",
+        "choices": [
+            "Isomerization",
+            "Phosphorylation",
+            "Cleavage",
+            "Oxidation"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Fats enter energy metabolism via?",
+        "choices": [
+            "Glycolysis",
+            "Pentose path",
+            "Beta-oxidation",
+            "Urea cycle"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Hormone raising basal metabolic rate?",
+        "choices": [
+            "Insulin",
+            "Cortisol",
+            "Thyroxine",
+            "Leptin"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Adipokine that decreases feed intake?",
+        "choices": [
+            "Ghrelin",
+            "Leptin",
+            "Insulin",
+            "Amylin"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Which nutrient drives intake most?",
+        "choices": [
+            "Protein",
+            "Fiber",
+            "Energy",
+            "Minerals"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Feed ingredient driving protein prices?",
+        "choices": [
+            "Corn",
+            "Soybeans",
+            "Wheat",
+            "Alfalfa"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "PM 2.5 refers to what?",
+        "choices": [
+            "Nitrogen gas",
+            "Fine particulate matter",
+            "Methane",
+            "Dust mites"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Which VFA most directly supports milk fat synthesis?",
+        "choices": [
+            "Propionate",
+            "Butyrate",
+            "Acetate",
+            "Valerate"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Primary limitation of ether extract analysis?",
+        "choices": [
+            "Overestimates fat",
+            "Underestimates fiber",
+            "Misses bound lipids",
+            "Includes protein"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Which carbohydrate ferments fastest in rumen?",
+        "choices": [
+            "Cellulose",
+            "Starch",
+            "Pectin",
+            "Sugar"
+        ],
+        "correct": 3
+    },
+    {
+        "question": "Which AA imbalance most limits swine growth?",
+        "choices": [
+            "Methionine",
+            "Lysine",
+            "Valine",
+            "Leucine"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Overheated protein reduces digestibility via?",
+        "choices": [
+            "Denaturation",
+            "Oxidation",
+            "Maillard reaction",
+            "Hydrolysis"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Which fraction best predicts ruminant protein supply?",
+        "choices": [
+            "CP",
+            "RDP",
+            "RUP",
+            "MP"
+        ],
+        "correct": 3
+    },
+    {
+        "question": "Microbial protein synthesis most limited by?",
+        "choices": [
+            "Energy",
+            "Fat",
+            "Minerals",
+            "Vitamins"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Which fatty acids are most pro-inflammatory?",
+        "choices": [
+            "Omega-3",
+            "Omega-6",
+            "Saturated",
+            "Trans"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Omega numbering counts from which end?",
+        "choices": [
+            "Carboxyl",
+            "Methyl",
+            "Carbonyl",
+            "Hydroxyl"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Antioxidants prevent which rancidity?",
+        "choices": [
+            "Hydrolytic",
+            "Microbial",
+            "Oxidative",
+            "Thermal"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Which factor most increases water intake?",
+        "choices": [
+            "Low salt",
+            "Cold stress",
+            "High protein",
+            "Low fiber"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Vitamin most likely to cause toxicity?",
+        "choices": [
+            "A",
+            "D",
+            "E",
+            "K"
+        ],
+        "correct": 0
+    },
+    {
+        "question": "Phytate primarily binds which mineral?",
+        "choices": [
+            "Calcium",
+            "Iron",
+            "Phosphorus",
+            "Magnesium"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Species most susceptible to Cu toxicity?",
+        "choices": [
+            "Cattle",
+            "Pigs",
+            "Sheep",
+            "Goats"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Selenium overlaps function with which vitamin?",
+        "choices": [
+            "A",
+            "C",
+            "D",
+            "E"
+        ],
+        "correct": 3
+    },
+    {
+        "question": "Which stomach region secretes HCl?",
+        "choices": [
+            "Cardia",
+            "Fundus",
+            "Pylorus",
+            "Esophagus"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Primary glucose transporter into enterocyte?",
+        "choices": [
+            "GLUT2",
+            "GLUT4",
+            "SGLT1",
+            "GLUT5"
+        ],
+        "correct": 2
+    },
+    {
+        "question": "Propionate is primarily used for?",
+        "choices": [
+            "Milk fat",
+            "Gluconeogenesis",
+            "ATP only",
+            "Ketones"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Negative energy balance postpartum causes?",
+        "choices": [
+            "Lipogenesis",
+            "Fat mobilization",
+            "Growth",
+            "Maintenance"
+        ],
+        "correct": 1
+    },
+    {
+        "question": "Enteric methane mitigation via feed focuses on?",
+        "choices": [
+            "More lignin",
+            "Lower digestibility",
+            "Alter fermentation",
+            "Less intake"
+        ],
+        "correct": 2
+    }
+]

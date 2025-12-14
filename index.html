@@ -1,0 +1,241 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Kahoot-Style Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            background: #1e1e2f;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .tracker {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .question {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+            min-height: 80px;
+        }
+
+        .answers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 16px;
+            height: calc(100% - 160px);
+        }
+
+        button.answer {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            font-size: 1.4rem;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: transform 0.1s, opacity 0.1s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        button.answer:hover {
+            transform: scale(1.03);
+            opacity: 0.9;
+        }
+
+        .red {
+            background: #e74c3c;
+        }
+
+        .blue {
+            background: #3498db;
+        }
+
+        .yellow {
+            background: #f1c40f;
+            color: #000;
+        }
+
+        .green {
+            background: #2ecc71;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 22px;
+            margin-top: 20px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 10;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            animation: fall 2s linear forwards;
+        }
+
+        @keyframes fall {
+            from {
+                transform: translateY(-10vh) rotate(0deg);
+            }
+
+            to {
+                transform: translateY(100vh) rotate(720deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container" style="position: relative;">
+        <h1>Quiz Game</h1>
+        <div class="tracker" id="tracker">Question 1 | Score: 0</div>
+        <div class="question" id="question">Loading...</div>
+        <div class="answers">
+            <button class="answer red" data-index="0"></button>
+            <button class="answer blue" data-index="1"></button>
+            <button class="answer yellow" data-index="2"></button>
+            <button class="answer green" data-index="3"></button>
+        </div>
+        <div class="result hidden" id="result"></div>
+    </div>
+
+    <script>
+        let questions = [];
+        let current = 0;
+        let score = 0;
+
+        async function loadQuestions() {
+            const res = await fetch('questions.json');
+            questions = shuffleArray(await res.json());
+            showQuestion();
+        }
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function showQuestion() {
+            if (current >= questions.length) {
+                document.querySelector('.answers').classList.add('hidden');
+                document.getElementById('question').textContent = 'Quiz Finished!';
+                document.getElementById('tracker').classList.add('hidden');
+                const result = document.getElementById('result');
+                result.textContent = `Final Score: ${score} / ${questions.length}`;
+                result.classList.remove('hidden');
+                return;
+            }
+
+            const q = questions[current];
+            document.getElementById('question').textContent = q.question;
+            document.getElementById('tracker').textContent = `Question ${current + 1} | Score: ${score}`;
+
+            document.querySelectorAll('button.answer').forEach(btn => {
+                const i = btn.dataset.index;
+                btn.textContent = q.choices[i];
+                btn.onclick = () => selectAnswer(i);
+            });
+        }
+
+        function selectAnswer(index) {
+            const correct = parseInt(index) === questions[current].correct;
+
+            if (correct) {
+                score++;
+                showConfetti();
+            } else {
+                showWrong();
+            }
+
+            setTimeout(() => {
+                current++;
+                showQuestion();
+            }, 2000);
+        }
+
+        function showWrong() {
+            const overlay = document.createElement('div');
+            overlay.className = 'overlay';
+            overlay.textContent = 'WRONG';
+            document.querySelector('.quiz-container').appendChild(overlay);
+            setTimeout(() => overlay.remove(), 2000);
+        }
+
+        function showConfetti() {
+            const container = document.querySelector('.quiz-container');
+            const overlay = document.createElement('div');
+            overlay.className = 'overlay';
+            overlay.style.background = 'transparent';
+
+            for (let i = 0; i < 120; i++) {
+                const conf = document.createElement('div');
+                conf.className = 'confetti';
+                conf.style.left = Math.random() * 100 + '%';
+                conf.style.background = `hsl(${Math.random() * 360},100%,50%)`;
+                conf.style.animationDelay = Math.random() * 0.5 + 's';
+                overlay.appendChild(conf);
+            }
+
+            container.appendChild(overlay);
+            setTimeout(() => overlay.remove(), 2000);
+        }
+
+        loadQuestions(); adQuestions();
+    </script>
+</body>
+
+</html>
