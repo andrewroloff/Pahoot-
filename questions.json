@@ -32,7 +32,7 @@
     {
         "question": "Which feed may contain gossypol?",
         "choices": [
-            "Soybean meal",
+            "Raisin Bran",
             "Cottonseed",
             "Canola meal",
             "Alfalfa"
@@ -40,7 +40,7 @@
         "correct": 1
     },
     {
-        "question": "SBM is paired with corn mainly to improve?",
+        "question": "SBM is paired with corn mainly to improve which of the following?",
         "choices": [
             "Energy density",
             "Fiber digestion",
@@ -50,7 +50,7 @@
         "correct": 2
     },
     {
-        "question": "Which protein source best matches AA needs?",
+        "question": "Which protein source best matches amino acid needs?",
         "choices": [
             "Plant",
             "Animal",
@@ -80,7 +80,7 @@
         "correct": 2
     },
     {
-        "question": "Which maturity stage increases lignin most?",
+        "question": "Which maturity stage increases lignin the most?",
         "choices": [
             "Vegetative",
             "Immature",
@@ -170,7 +170,7 @@
         "correct": 1
     },
     {
-        "question": "Antioxidants added mainly to feeds high in?",
+        "question": "Antioxidants are added mainly to feeds high in?",
         "choices": [
             "Protein",
             "Fiber",
@@ -282,7 +282,7 @@
     {
         "question": "Energy unit larger: calorie vs Calorie?",
         "choices": [
-            "Calorie",
+            "Calorie (large C)",
             "Same",
             "Calorie x10",
             "Calorie x100"

@@ -9,7 +9,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            background: #0B486B;
+            background: linear-gradient(5deg,
+                    #0B486B, #F56217);
             margin: 0;
             padding: 0;
             color: #fff;
@@ -21,6 +23,7 @@
 
         .quiz-container {
             background: #1e1e2f;
+            opacity: 75%;
             width: 90%;
             max-width: 600px;
             padding: 20px;
@@ -126,6 +129,18 @@
             animation: fall 2s linear forwards;
         }
 
+        .snoopy {
+            position: absolute;
+            left: 0;
+            top: 50vh;
+        }
+
+        .honse {
+            position: absolute;
+            right: 0;
+            top: 10vh;
+        }
+
         @keyframes fall {
             from {
                 transform: translateY(-10vh) rotate(0deg);
@@ -135,13 +150,105 @@
                 transform: translateY(100vh) rotate(720deg);
             }
         }
+
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .mode-label {
+            opacity: 0.85;
+        }
+
+        /* Bubble switch container */
+        .bubble-switch {
+            position: relative;
+            width: 72px;
+            height: 36px;
+        }
+
+        /* Hide checkbox */
+        .bubble-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* Track */
+        .slider {
+            position: absolute;
+            inset: 0;
+            border-radius: 999px;
+            background: linear-gradient(5deg, #0B486B, #F56217);
+            box-shadow:
+                inset 0 2px 4px rgba(255, 255, 255, 0.3),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+                0 6px 12px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* Bubble knob */
+        .slider::before {
+            content: "";
+            position: absolute;
+            height: 28px;
+            width: 28px;
+            left: 4px;
+            top: 4px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%,
+                    #ffffff,
+                    #e6e6e6);
+            box-shadow:
+                inset 0 2px 4px rgba(255, 255, 255, 0.8),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.2),
+                0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        /* Checked state */
+        .bubble-switch input:checked+.slider::before {
+            transform: translateX(36px);
+        }
+
+        button.answer:active {
+            transform: scale(0.96);
+        }
     </style>
 </head>
+<!-- SOUND EFFECTS -->
+<audio id="hoverSound" src="sounds/hover.wav" preload="auto"></audio>
+<audio id="correctSound" src="sounds/correct.wav" preload="auto"></audio>
+<audio id="wrongSound" src="sounds/wrong.wav" preload="auto"></audio>
+<audio id="confettiSound" src="sounds/confetti.wav" preload="auto"></audio>
+<audio id="toggleSound" src="sounds/toggle.wav" preload="auto"></audio>
+<audio id="endSound" src="sounds/win.wav" preload="auto"></audio>
 
 <body>
+    <div class="snoopy"><img
+            src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExYWZ1cjU5ZnJ6cThjcjc2YWxoZmJsZXh2Z2xxOGZjbGlsaG42YWtjNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rgq4Sar77s85W/giphy.gif"
+            alt="" width=300px></div>
+    <div class="honse"><img src="https://media.tenor.com/hFZPT9vXz-wAAAAM/horse-funny-horse.gif" alt=""></div>
     <div class="quiz-container" style="position: relative;">
         <h1>Pahoot!</h1>
         <div class="tracker" id="tracker">Question 1 | Score: 0</div>
+        <div class="mode-toggle">
+            <span class="mode-label">Normal</span>
+
+            <label class="bubble-switch">
+                <input type="checkbox" id="endlessToggle">
+                <span class="slider"></span>
+            </label>
+
+            <span class="mode-label">Endless</span>
+        </div>
+
+
         <div class="question" id="question">Loading...</div>
         <div class="answers">
             <button class="answer red" data-index="0"></button>
@@ -153,15 +260,41 @@
     </div>
 
     <script>
+        function playSound(id) {
+            const sound = document.getElementById(id);
+            if (!sound) return;
+            sound.currentTime = 0;
+            sound.play().catch(() => { });
+        }
+
         let questions = [];
         let current = 0;
         let score = 0;
+        let endlessMode = false;
 
         async function loadQuestions() {
             const res = await fetch('questions.json');
-            questions = shuffleArray(await res.json());
+            questions = await res.json();
+            questions = shuffleArray(questions);
+            current = 0;
+            score = 0;
             showQuestion();
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('audio').forEach(a => {
+                a.volume = 0.9;
+            });
+            document.getElementById('endlessToggle').addEventListener('change', e => {
+                playSound('toggleSound');
+                endlessMode = e.target.checked;
+                current = 0;
+                score = 0;
+                questions = shuffleArray(questions);
+                showQuestion();
+
+            });
+        });
 
         function shuffleArray(arr) {
             for (let i = arr.length - 1; i > 0; i--) {
@@ -172,7 +305,8 @@
         }
 
         function showQuestion() {
-            if (current >= questions.length) {
+            if (!endlessMode && current >= questions.length) {
+                playSound('endSound');
                 document.querySelector('.answers').classList.add('hidden');
                 document.getElementById('question').textContent = 'Quiz Finished!';
                 document.getElementById('tracker').classList.add('hidden');
@@ -182,26 +316,49 @@
                 return;
             }
 
+            if (endlessMode && current >= questions.length) {
+                questions = shuffleArray(questions);
+                current = 0;
+            }
+
+            document.querySelector('.answers').classList.remove('hidden');
+            document.getElementById('tracker').classList.remove('hidden');
+            document.getElementById('result').classList.add('hidden');
+
             const q = questions[current];
             document.getElementById('question').textContent = q.question;
-            document.getElementById('tracker').textContent = `Question ${current + 1} | Score: ${score}`;
+            document.getElementById('tracker').textContent =
+                endlessMode
+                    ? `Endless Mode | Score: ${score}`
+                    : `Question ${current + 1} | Score: ${score}`;
 
             document.querySelectorAll('button.answer').forEach(btn => {
                 const i = btn.dataset.index;
                 btn.textContent = q.choices[i];
-                btn.onclick = () => selectAnswer(i);
+
+                btn.onmouseenter = () => playSound('hoverSound');
+                btn.onclick = () => {
+                    selectAnswer(i);
+                };
             });
+
         }
 
         function selectAnswer(index) {
-            const correct = parseInt(index) === questions[current].correct;
+            const q = questions[current];
+            const isCorrect = parseInt(index) === q.correct;
 
-            if (correct) {
+            if (isCorrect) {
+                playSound('correctSound');
                 score++;
+                playSound('confettiSound');
                 showConfetti();
             } else {
-                showWrong();
+                playSound('wrongSound');
+                const correctText = q.choices[q.correct];
+                showWrong(correctText);
             }
+
 
             setTimeout(() => {
                 current++;
@@ -209,10 +366,18 @@
             }, 2000);
         }
 
-        function showWrong() {
+        function showWrong(correctAnswer) {
             const overlay = document.createElement('div');
             overlay.className = 'overlay';
-            overlay.textContent = 'WRONG';
+            overlay.innerHTML = `
+            <div style="text-align:center;">
+                <div style="font-size:4rem;">WRONG</div>
+                <div style="font-size:1.8rem; margin-top:10px;">
+                    Correct answer:<br>
+                    <span style="color:#2ecc71;">${correctAnswer}</span>
+                </div>
+            </div>
+        `;
             document.querySelector('.quiz-container').appendChild(overlay);
             setTimeout(() => overlay.remove(), 2000);
         }
@@ -236,8 +401,9 @@
             setTimeout(() => overlay.remove(), 2000);
         }
 
-        loadQuestions(); adQuestions();
+        loadQuestions();
     </script>
+
 </body>
 
 </html>
