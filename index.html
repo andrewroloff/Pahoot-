@@ -13,6 +13,17 @@
     <title>Pahoot!</title>
     <style>
         /* csstop */
+        :root {
+            --radius-lg: 22px;
+            --radius-md: 16px;
+            --pad-lg: 28px;
+            --pad-md: 20px;
+            --pad-sm: 14px;
+
+            --glass-bg: rgba(15, 15, 20, 0.65);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
         body {
             font-family: "Montserrat", sans-serif !important;
             font-weight: 900 !important;
@@ -47,6 +58,131 @@
         body.theme-matrix {
             background: url("https://upload.wikimedia.org/wikipedia/commons/c/cc/Digital_rain_animation_medium_letters_shine.gif");
             color: #00ff88;
+        }
+
+        .flashcard {
+            width: 100%;
+            max-width: 520px;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            user-select: none;
+        }
+
+
+        .flashcard-inner {
+            position: relative;
+            min-height: 260px;
+            transition: transform 0.6s cubic-bezier(.4, .2, .2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flashcard-stage {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 32px;
+            min-height: 360px;
+        }
+
+
+        .flashcard.flipped .flashcard-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flashcard-face {
+            background:
+                linear-gradient(160deg, rgba(255, 255, 255, .1), rgba(0, 0, 0, .3)),
+                linear-gradient(5deg, #0B486B, #F56217);
+
+            border-radius: var(--radius-lg);
+            padding: var(--pad-lg);
+
+            box-shadow:
+                0 18px 40px rgba(0, 0, 0, .6),
+                inset 0 1px 3px rgba(255, 255, 255, .2);
+        }
+
+
+        .flashcard-front {
+            background: linear-gradient(5deg, #0B486B, #F56217);
+        }
+
+        .flashcard-back {
+            background: linear-gradient(5deg, #1f4037, #99f2c8);
+            transform: rotateY(180deg);
+        }
+
+        .card-label {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .card-text {
+            font-size: 1.6rem;
+            line-height: 1.4;
+        }
+
+        .gradient-btn {
+            margin-top: 16px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(5deg, #0B486B, #F56217);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, .4);
+            transition: transform .15s, opacity .15s;
+        }
+
+        .gradient-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .gradient-btn:active {
+            transform: scale(0.96);
+        }
+
+        #controlDrawer {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+
+            width: 280px;
+            padding: var(--pad-md);
+            border-radius: var(--radius-md);
+
+            background:
+                linear-gradient(160deg, rgba(255, 255, 255, .1), rgba(0, 0, 0, .4)),
+                var(--glass-bg);
+
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--glass-border);
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, .6);
+        }
+
+        .container-btn {
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: linear-gradient(5deg, #0B486B, #F56217);
+            border: none;
+            font-weight: bold;
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, .5),
+                inset 0 1px 2px rgba(255, 255, 255, .25);
+        }
+
+        #learnInput {
+            width: 100%;
+            margin-top: 14px;
+            padding: 10px;
+            border-radius: 12px;
+            border: none;
+            font-size: 1rem;
         }
 
         #hud {
@@ -129,6 +265,13 @@
             }
         }
 
+        @media (hover:hover) {
+            .quiz-container:hover {
+                box-shadow:
+                    0 40px 100px rgba(0, 0, 0, .75),
+                    inset 0 1px 3px rgba(255, 255, 255, .2);
+            }
+        }
 
         @media (max-width: 600px) {
             h1 {
@@ -251,9 +394,8 @@
         body.hypermode .quiz-container {
             animation: chromaShift 0.12s infinite;
             box-shadow:
-                -2px 0 rgba(255, 0, 0, 0.3),
-                2px 0 rgba(0, 255, 255, 0.3),
-                0 0 30px rgba(255, 0, 255, 0.4);
+                0 0 60px rgba(255, 0, 255, .4),
+                0 0 120px rgba(0, 255, 255, .25);
         }
 
         @keyframes chromaShift {
@@ -474,13 +616,24 @@
 
 
         .quiz-container {
-            background: #1e1e2f;
-            opacity: 75%;
-            width: 90%;
-            max-width: 600px;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            position: relative;
+            max-width: 760px;
+            margin: 40px auto;
+            padding: var(--pad-lg);
+            border-radius: var(--radius-lg);
+
+            background:
+                linear-gradient(160deg, rgba(255, 255, 255, .06), rgba(0, 0, 0, .2)),
+                var(--glass-bg);
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, .65),
+                inset 0 1px 2px rgba(255, 255, 255, .15);
+
+            border: 1px solid var(--glass-border);
         }
 
         h1 {
@@ -553,18 +706,32 @@
 
         .overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            font-weight: bold;
-            color: white;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 10;
+            align-items: center;
+
+            background: rgba(0, 0, 0, .55);
+            backdrop-filter: blur(6px);
+            z-index: 100;
+        }
+
+        .overlay-panel {
+            width: min(92vw, 520px);
+            padding: var(--pad-lg);
+            border-radius: var(--radius-lg);
+
+            background:
+                linear-gradient(160deg, rgba(255, 255, 255, .08), rgba(0, 0, 0, .35)),
+                var(--glass-bg);
+
+            border: 1px solid var(--glass-border);
+
+            box-shadow:
+                0 40px 90px rgba(0, 0, 0, .7),
+                inset 0 1px 2px rgba(255, 255, 255, .15);
+
+            animation: popIn .35s ease-out;
         }
 
         .confetti {
@@ -597,6 +764,17 @@
             }
         }
 
+        @keyframes popIn {
+            from {
+                transform: scale(.92) translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
 
         .mode-toggle {
             display: flex;
@@ -834,6 +1012,74 @@
         </div>
     </div>
 
+    <div id="flashcardOverlay" class="overlay hidden">
+        <div class="flashcard-container">
+
+            <div class="flashcard-controls">
+                <button onclick="exitFlashcards()" style="
+        border:none;
+        border-radius:50%;
+        width:42px;
+        height:42px;
+        font-size:20px;
+        cursor:pointer;
+        background: #0B486B;
+            background: linear-gradient(5deg,
+                    #0B486B, #F56217);
+        color:black;">✕</button>
+                <button onclick="setFlashcardMode('carousel')" style="
+  width:25%;
+  padding:10px;
+  margin-top:10px;
+  margin-bottom:10px;
+  border-radius:999px;
+  border:none;
+  background: #F56217;
+  cursor:pointer;
+  font-weight:bold;">Carousel</button>
+                <button onclick="setFlashcardMode('learn')" style="
+  width:25%;
+  padding:10px;
+  margin-top:10px;
+  margin-bottom:10px;
+  border-radius:999px;
+  border:none;
+  background: #F56217;
+  cursor:pointer;
+  font-weight:bold;">Learn</button>
+            </div>
+
+            <div id="flashcardArea"></div>
+
+            <div class="flashcard-nav">
+                <button onclick="prevFlashcard()" style="
+        border:none;
+        border-radius:50%;
+        width:42px;
+        height:42px;
+        font-size:20px;
+        cursor:pointer;
+        background: #0B486B;
+            background: linear-gradient(5deg,
+                    #0B486B, #F56217);
+        color:black; margin-top: 5px;">◀</button>
+                <span id="flashcardCounter"></span>
+                <button onclick="nextFlashcard()" style="
+        border:none;
+        border-radius:50%;
+        width:42px;
+        height:42px;
+        font-size:20px;
+        cursor:pointer;
+        background: #0B486B;
+            background: linear-gradient(5deg,
+                    #0B486B, #F56217);
+        color:black; margin-top: 5px;">▶</button>
+            </div>
+
+        </div>
+    </div>
+
     <div id="achievementPopup" class="overlay hidden">
         <div style="
     background:#111;
@@ -903,6 +1149,21 @@
 ">
             ☰
         </button>
+        <button onclick="enterFlashcards()" style="
+        position:absolute;
+        top: 14rem;
+        left:16px;
+        border:none;
+        border-radius:50%;
+        width:42px;
+        height:42px;
+        font-size:20px;
+        cursor:pointer;
+        background: #0B486B;
+            background: linear-gradient(5deg,
+                    #0B486B, #F56217);
+        color:black;">📚</button>
+
 
         <button id="retryMissedBtn" class="hidden" style="
   width:100%;
@@ -1015,10 +1276,12 @@
         let recentResults = []; // true/false history
         let sessionStart = Date.now();
         let sessionReplay = [];
-
+        let flashcardMode = false;
+        let flashcardIndex = 0;
+        let flashcardSubMode = "carousel"; // "carousel" | "learn"
+        let flashcards = [];
+        let flashcardFlipped = false;
         const LOAD_DECAY = 0.92; // recovery rate
-
-
 
         const ACHIEVEMENTS = {
             first_correct: {
@@ -1125,6 +1388,122 @@
         }
 
         // Helpers
+
+        function enterFlashcards() {
+            flashcardMode = true;
+            flashcards = [...questions];
+            flashcardIndex = 0;
+            flashcardFlipped = false;
+
+            document.getElementById("flashcardOverlay").classList.remove("hidden");
+            renderFlashcard();
+        }
+
+        function exitFlashcards() {
+            flashcardMode = false;
+            document.getElementById("flashcardOverlay").classList.add("hidden");
+        }
+
+        function renderFlashcard() {
+            const q = flashcards[flashcardIndex];
+            const front = q.question;
+            const back = q.choices[q.correct];
+            const area = document.getElementById("flashcardArea");
+
+            document.getElementById("flashcardCounter").textContent =
+                `${flashcardIndex + 1} / ${flashcards.length}`;
+
+            if (flashcardSubMode === "learn") {
+                renderLearnCard(front, back, area);
+            } else {
+                renderCarouselCard(front, back, area);
+            }
+        }
+
+
+        function renderCarouselCard(front, back, area) {
+            area.innerHTML = `
+    <div class="flashcard ${flashcardFlipped ? "flipped" : ""}"
+         onclick="flipFlashcard()">
+      <div class="flashcard-inner">
+        <div class="flashcard-face flashcard-front">
+          <div class="card-label">QUESTION</div>
+          <div class="card-text">${front}</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <div class="card-label">ANSWER</div>
+          <div class="card-text">${back}</div>
+        </div>
+      </div>
+    </div>
+  `;
+        }
+
+        function renderLearnCard(front, back, area) {
+            area.innerHTML = `
+    <div class="flashcard learn">
+      <div class="flashcard-face flashcard-front">
+        <div class="card-label">QUESTION</div>
+        <div class="card-text">${front}</div>
+
+        <input id="learnInput"
+               placeholder="Type your answer…"
+               autocomplete="off" />
+
+        <button class="gradient-btn"
+                onclick="revealLearnAnswer('${back.replace(/'/g, "\\'")}')">
+          Reveal Answer
+        </button>
+      </div>
+    </div>
+  `;
+        }
+
+        function revealLearnAnswer(answer) {
+            const area = document.getElementById("flashcardArea");
+            area.innerHTML += `
+    <div class="learn-reveal">
+      <div class="card-label">ANSWER</div>
+      <div class="card-text">${answer}</div>
+    </div>
+  `;
+        }
+
+
+
+        function flipFlashcard() {
+            flashcardFlipped = !flashcardFlipped;
+            renderFlashcard();
+        }
+
+        function nextFlashcard() {
+            flashcardIndex = (flashcardIndex + 1) % flashcards.length;
+            flashcardFlipped = false;
+            renderFlashcard();
+        }
+
+        function prevFlashcard() {
+            flashcardIndex =
+                (flashcardIndex - 1 + flashcards.length) % flashcards.length;
+            flashcardFlipped = false;
+            renderFlashcard();
+        }
+
+        function setFlashcardMode(mode) {
+            flashcardSubMode = mode;
+            flashcardFlipped = false;
+            renderFlashcard();
+        }
+
+        function checkLearnAnswer() {
+            const q = flashcards[flashcardIndex];
+            const input = document.getElementById("learnInput").value.toLowerCase();
+            const correct = q.choices[q.correct].toLowerCase();
+
+            const similarity = input.includes(correct) || correct.includes(input);
+
+            alert(similarity ? "Nice!" : `Answer: ${q.choices[q.correct]}`);
+        }
 
         function speak(text, rate = 1, pitch = 1) {
             if (!settings.voiceMode) return;
