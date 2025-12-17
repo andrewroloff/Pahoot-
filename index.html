@@ -1400,6 +1400,7 @@
         document.addEventListener('keydown', function (event) {
             if (flashcardMode) {
                 if (event.key === ' ') {
+                    event.preventDefault();
                     flipFlashcard();
                 }
                 if (event.key === "ArrowRight") {
