@@ -41,14 +41,65 @@
 
         /* themes */
 
+        body.theme-eepy {
+            background: url("https://media.istockphoto.com/id/486866710/photo/man-in-pajamas.jpg?s=170667a&w=is&k=20&c=jajdSFUpCau6O6YNdESD6yn76C7NokAdXT19fJjcCZI=");
+            background-size: 15%;
+        }
+
+        .pjhat {
+            display: none;
+        }
+
+        .theme-eepy .pjhat {
+            display: inherit !important;
+            width: 120px;
+            Position: absolute;
+            left: 90px;
+            top: 5px;
+            rotate: -15deg;
+        }
+
         body.theme-fire {
             background: url("https://i.pinimg.com/originals/f9/6d/fb/f96dfb9f9d4e0b42af3888de8b9473a7.gif");
             background-repeat: none;
             background-size: cover;
         }
 
+        .theme-fire .red {
+            background: #f05a31;
+        }
+
+        .theme-fire .blue {
+            background: #d04419;
+        }
+
+        .theme-fire .green {
+            background: #faf055;
+        }
+
+        .theme-fire .yellow {
+            background: #ca2210;
+        }
+
         body.theme-diamond {
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            background: url("https://i.pinimg.com/originals/eb/3d/2d/eb3d2d44ebbe7a6bb8b9d3768846e875.gif");
+            background-size: 249px 140px;
+        }
+
+        .theme-diamond .red {
+            background: #1f75e4;
+        }
+
+        .theme-diamond .blue {
+            background: #0e3e7d;
+        }
+
+        .theme-diamond .green {
+            background: #5599f3;
+        }
+
+        .theme-diamond .yellow {
+            background: #2c496f;
         }
 
         body.theme-chaos {
@@ -681,6 +732,7 @@
             background: #e74c3c;
         }
 
+
         .blue {
             background: #3498db;
         }
@@ -1121,7 +1173,8 @@
         <img src="https://media.tenor.com/hFZPT9vXz-wAAAAM/horse-funny-horse.gif" alt="">
     </div>
     <div class="quiz-container" style="position: relative;">
-        <h1><img src="images/Pahoot!.PNG" alt="" width=75%></h1>
+        <img src="images/pjhat.jpg" alt="pjhat" class="pjhat">
+        <h1><img id="logo" src="images/Pahoot!.PNG" alt="" width=75%></h1>
         <button id="settingsBtn" style="
         position:absolute;
         top:16px;
@@ -1342,7 +1395,8 @@
             streak_10: 'theme-fire',
             perfect_deck: 'theme-diamond',
             hyper_survivor: 'theme-chaos',
-            dev_mode: 'theme-matrix'
+            dev_mode: 'theme-matrix',
+            eepy: 'theme-eepy'
         };
 
 
@@ -1787,10 +1841,10 @@
             cognitiveLoad *= LOAD_DECAY;
 
             // Slow answers increase load
-            if (responseTime > 4) cognitiveLoad += (responseTime - 4) * 4;
+            if (responseTime > 4) cognitiveLoad += (responseTime - 4) * 2;
 
             // Wrong answers spike load
-            if (!isCorrect) cognitiveLoad += 12;
+            if (!isCorrect) cognitiveLoad += 4;
 
             // Track recent answers
             recentResults.push(isCorrect);
@@ -1968,6 +2022,7 @@
             localStorage.setItem(ACHIEVEMENTS_KEY, JSON.stringify(unlockedAchievements));
 
             const theme = ACHIEVEMENT_THEMES[id];
+            console.log(theme);
             if (theme) {
                 unlockedThemes[theme] = true;
                 localStorage.setItem(THEMES_KEY, JSON.stringify(unlockedThemes));
